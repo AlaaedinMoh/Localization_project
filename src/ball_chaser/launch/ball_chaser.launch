@@ -1,11 +1,8 @@
+<?xml version="1.0"?>
 <launch>
 
  <!-- The drive_bot node -->
   <node name="drive_bot" type="drive_bot" pkg="ball_chaser" output="screen">
-	<rosparam>
-linear_x: 0
-angular_z: 0
-</rosparam>
   </node>
 
  <!-- The image processing node -->

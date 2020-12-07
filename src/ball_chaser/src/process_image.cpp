@@ -10,7 +10,7 @@ bool isMoving = false;
 void drive_robot(float lin_x, float ang_z)
 {
     // TODO: Request a service and pass the velocities to it to drive the robot
-    ROS_INFO_STREAM("Driving the robot...");
+    //("Driving the robot...");
 
     ball_chaser::DriveToTarget drivingSvc;
     drivingSvc.request.linear_x = lin_x;
@@ -29,42 +29,47 @@ void process_image_callback(const sensor_msgs::Image img)
     int white_pixel = 255;
     int midSectionBegin = img.width/3;
     int midSectionEnd = 2 * (img.width/3);
+    //std::string info = "Image recieved. Width = " + std::to_string(img.width) + "\tHeight = " + std::to_string(img.height);
+    
+    //ROS_INFO_STREAM(info);
+    //drive_robot(0.1, 0.1);
     // TODO: Loop through each pixel in the image and check if there's a bright white one
     // Then, identify if this pixel falls in the left, mid, or right side of the image
     // Depending on the white ball position, call the drive_bot function and pass velocities to it
     // Request a stop when there's no white ball seen by the camera
     
-    for(int i = 0; i < img.height * img.step; i++)
+    
+    for(int i = 0; i < img.height * img.step; i+=3)
     {
-        if(img.data[i] == white_pixel)
+        if(img.data[i] == white_pixel && img.data[i+1] == white_pixel && img.data[i+2] == white_pixel)
         {
             ROS_INFO("Ball is found...");
-            int col = i / img.step;
+            int col_idx = i % img.step;
             isBallFound = true;
-            if(col <= midSectionBegin)
+            if(col_idx <= midSectionBegin)
             {
-                drive_robot(0.2, -0.2);
                 ROS_INFO("Driving left");
+                drive_robot(0, 0.5);
                 break;
             }
-            if(col > midSectionBegin && col <= midSectionEnd )
+            if(col_idx > midSectionBegin && col_idx <= midSectionEnd )
             {
-                drive_robot(0.2, 0);
                 ROS_INFO("Driving forward");
+                drive_robot(0.5, 0);
                 break;
             }
-            if(col > midSectionEnd)
+            if(col_idx > midSectionEnd)
             {
-                drive_robot(0.2, 0.2);
                 ROS_INFO("Driving right");
+                drive_robot(0, -0.5);
                 break;
             }
         }
-        if(!isBallFound)
-        {
-            ROS_INFO("Ball could not be found...");
-            drive_robot(0, 0);
-        }
+    }
+    if(!isBallFound)
+    {
+        ROS_INFO("Ball could not be found...");
+        drive_robot(0, 0);
     }
 }
 
