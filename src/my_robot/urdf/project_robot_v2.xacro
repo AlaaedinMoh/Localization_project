@@ -1,0 +1,326 @@
+<?xml version='1.0'?>
+
+<robot name="my_robot" xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <xacro:include filename="$(find my_robot)/urdf/my_robot.gazebo" />
+    <link name='front_side_chassis'>
+      <mass value="15.0"/>
+      <origin xyz="0.0 0 0" rpy=" 0 0 0"/>
+	<inertia
+          ixx="0.1" ixy="0" ixz="0"
+          iyy="0.1" iyz="0"
+          izz="0.1" />
+   <collision name='front_side_chassis_collision'>
+      <origin xyz="0 0 0" rpy=" 0 0 0"/> 
+      <geometry>
+        <box size=".4 .2 .1"/>
+      </geometry>
+    </collision>
+    <visual name='front_side_chassis_visual'>
+      <origin xyz="0 0 0" rpy=" 0 0 0"/>
+      <geometry>
+        <box size=".4 .2 .1"/>
+      </geometry>
+          <ambient>0 1 0 1</ambient>
+          <diffuse>0 1 0 1</diffuse>
+          <specular>0 1 0 1</specular>
+          <emissive>0 1 0 1</emissive>
+    </visual>
+    </link>
+
+    <link name='rear_side_chassis'>
+      <origin xyz="0.03107 -0.022757 0" rpy="0 -0 0" />
+      <inertial>
+        <mass>0.5</mass>
+	<inertia
+          ixx="0.1" ixy="0" ixz="0"
+          iyy="0.1" iyz="0"
+          izz="0.1" />
+      </inertial>
+      <visual name='rear_side_chassis_visual'>
+        <origin xyz="0 0 0" rpy="0 -0 0" />
+          <ambient>0 1 0 1</ambient>
+          <diffuse>0 1 0 1</diffuse>
+          <specular>0 1 0 1</specular>
+          <emissive>0 1 0 1</emissive>
+        </material>
+        <transparency>0</transparency>
+        <cast_shadows>1</cast_shadows>
+      </visual>
+      <collision name='rear_side_chassis_collision'>
+        <origin xyz="0 0 0" rpy="0 -0 0" />
+        <geometry>
+          <cylinder>
+            <radius>0.2</radius>
+            <length>0.1</length>
+          </cylinder>
+        </geometry>
+      </collision>
+    </link>
+
+    <link name='front_wheel_left'>
+      <pose frame=''>0.24107 0.187243 -0 1.5708 -0 0</pose>
+      <inertial>
+      <mass value="15.0"/>
+      <origin xyz="0.0 0 0" rpy=" 0 0 0"/>
+      <inertia
+          ixx="0.1" ixy="0" ixz="0"
+          iyy="0.1" iyz="0"
+          izz="0.1"
+      />
+    </inertial>
+      <visual name='front_wheel_left_visual'>
+        <origin xyz="0 0 0" rpy="0 -0 0" />
+        <geometry>
+          <cylinder>
+            <radius>0.1</radius>
+            <length>0.02</length>
+          </cylinder>
+        </geometry>
+        <material>
+          <lighting>1</lighting>
+          <ambient>0 0 0 1</ambient>
+          <diffuse>0 0 0 1</diffuse>
+          <specular>0 0 0 1</specular>
+          <emissive>0 0 0 1</emissive>
+        </material>
+      </visual>
+      <collision name='front_wheel_left_collision'>
+	  <geometry>
+          <cylinder>
+            <radius>0.1</radius>
+            <length>0.02</length>
+          </cylinder>
+        </geometry>
+      </collision>
+    </link>
+
+    <link name='front_wheel_right'>
+      <origin xyz="0.24107 -0.232757 -0" rpy="1.5708 -0 0" />
+      <inertial>
+        <mass value="5.0"/>
+      		<origin xyz="0.0 0 0" rpy=" 0 0 0"/>
+      		<inertia
+          		ixx="0.1" ixy="0" ixz="0"
+          		iyy="0.1" iyz="0"
+          		izz="0.1" />
+      </inertial>
+      <visual name='front_wheel_right_visual'>
+        <origin xyz="0 0 0" rpy="0 -0 0" />
+        <geometry>
+          <cylinder>
+            <radius>0.1</radius>
+            <length>0.02</length>
+          </cylinder>
+        </geometry>
+        <material>
+          <lighting>1</lighting>
+          <ambient>0 0 0 1</ambient>
+          <diffuse>0 0 0 1</diffuse>
+          <specular>0 0 0 1</specular>
+          <emissive>0 0 0 1</emissive>
+        </material>
+      </visual>
+      <collision name='front_wheel_right_collision'>
+        <origin xyz="0 0 0" rpy="0 -0 0" />
+        <geometry>
+          <cylinder>
+            <radius>0.1</radius>
+            <length>0.02</length>
+          </cylinder>
+        </geometry>
+      </collision>
+    </link>
+
+    <link name='rear_wheel_left'>
+      <origin xyz="0.03107 0.187243 0" rpy="1.5708 -0 0" />
+      <inertial>
+        <mass value="5.0"/>
+      		<origin xyz="0.0 0 0" rpy=" 0 0 0"/>
+      		<inertia
+          		ixx="0.1" ixy="0" ixz="0"
+          		iyy="0.1" iyz="0" />
+      <visual name='rear_wheel_left_visual'>
+        <origin xyz="0 0 0" rpy="0 -0 0" />
+        <geometry>
+          <cylinder>
+            <radius>0.1</radius>
+            <length>0.02</length>
+          </cylinder>
+        </geometry>
+        <material>
+          <lighting>1</lighting>
+          <ambient>0 0 0 1</ambient>
+          <diffuse>0 0 0 1</diffuse>
+          <specular>0 0 0 1</specular>
+          <emissive>0 0 0 1</emissive>
+        </material>
+      </visual>
+      <collision name='rear_wheel_left_collision'>
+        <origin xyz="0 0 0" rpy="0 -0 0" />
+        <geometry>
+          <cylinder>
+            <radius>0.1</radius>
+            <length>0.02</length>
+          </cylinder>
+        </geometry>
+      </collision>
+    </link>
+    <link name='rear_wheel_right'>
+      <origin xyz="0.03107 -0.232757 -0" rpy="1.5708 -0 0" />
+      <inertial>
+        <mass value="5.0"/>
+      		<origin xyz="0.0 0 0" rpy=" 0 0 0"/>
+      		<inertia
+          		ixx="0.1" ixy="0" ixz="0"
+          		iyy="0.1" iyz="0" />
+      <visual name='rear_wheel_right_visual'>
+        <origin xyz="0 0 0" rpy="0 -0 0" />
+        <geometry>
+          <cylinder>
+            <radius>0.1</radius>
+            <length>0.02</length>
+          </cylinder>
+        </geometry>
+        <material>
+          <lighting>1</lighting>
+          <ambient>0 0 0 1</ambient>
+          <diffuse>0 0 0 1</diffuse>
+          <specular>0 0 0 1</specular>
+          <emissive>0 0 0 1</emissive>
+        </material>
+      </visual>
+      <collision name='rear_wheel_right_collision'>
+        <origin xyz="0 0 0" rpy="0 -0 0" />
+        <geometry>
+          <cylinder>
+            <radius>0.1</radius>
+            <length>0.02</length>
+          </cylinder>
+        </geometry>
+    </link>
+
+    <link name='camera'>
+      <origin xyz="0.356071 -0.022757 0" rpy="1.9e-05 -3e-06 0.00156" />
+      	<inertial>
+      		<mass value="0.1"/>
+      		<origin xyz="0 0 0" rpy=" 0 0 0"/>
+      		<inertia
+          		ixx="1e-6" ixy="0" ixz="0"
+          		iyy="1e-6" iyz="0"
+          		izz="1e-6" />
+      </inertial>
+      <visual name='camera_visual'>
+        <origin xyz="0 0 0" rpy="0 -0 0" />
+        <geometry>
+          <box>
+            <size>0.05 0.05 0.05</size>
+          </box>
+        </geometry>
+        <material>
+          <lighting>1</lighting>
+          <ambient>0.3 0.3 0.3 1</ambient>
+          <diffuse>0 0 1 1</diffuse>
+          <specular>0 0 1 1</specular>
+          <emissive>0 0 0 1</emissive>
+        </material>
+      </visual>
+      <collision name='camera_collision'>
+        <origin xyz="0 0 0" rpy="0 -0 0" />
+        <geometry>
+          <box>
+            <size>0.05 0.05 0.05</size>
+          </box>
+        </geometry>
+      </collision>
+    </link>
+
+    <link name='hokuyo'>
+      <origin xyz="0 0 0" rpy="0 -0 0" />
+	<inertial>
+      		<mass value="1e-5"/>
+      		<origin xyz="0 0 0" rpy=" 0 0 0"/>
+      		<inertia
+          		ixx="1e-6" ixy="0" ixz="0"
+          		iyy="1e-6" iyz="0"
+          		izz="1e-6" />
+      </inertial>
+      <visual name='hokuyo_visual'>
+        <origin xyz="0 0 0" rpy="0 -0 0" />
+        <geometry filename = "package://my_robot/meshes/hokuyo.dae">
+        </geometry>
+        <material>
+          <lighting>1</lighting>
+          <ambient>1 0 0 1</ambient>
+          <diffuse>1 0 0 1</diffuse>
+          <specular>1 0 0 1</specular>
+          <emissive>1 0 0 1</emissive>
+        </material>
+      </visual>
+      <collision name='hokuyo_collision'>
+        <origin xyz="0 0 0" rpy="0 -0 0" />
+        <geometry>
+          <box>
+            <size>0.1 0.1 0.1</size>
+          </box>
+        </geometry>
+      </collision>
+    </link>
+
+    <joint name='camera_joint' type='fixed'>
+      <parent>front_side_chassis</parent>
+      <child>camera</child>
+      <origin xyz="0.175 0 0" rpy="0 -0 0" />
+      <axis xyz="1 0 0" rpy="0 0 0" />
+    </joint>
+
+  <joint type="fixed" name="hokuyo_joint">
+	<origin xyz="0.15 0 0.3" rpy="0 0 0"/>
+    	<child link="hokuyo"/>
+    	<parent link="chassis"/>
+    	<axis xyz="0 1 0" rpy="0 0 0"/>
+  </joint>
+
+   <joint name='joint_chassis_fixed' type='fixed'>
+      <parent>front_side_chassis</parent>
+      <child>rear_side_chassis</child>
+      <origin xyz="0 0 0" rpy="0 -0 0" />
+      <axis xyz="1 0 0" rpy="0 0 0"/>
+    </joint>
+
+    <joint name='joint_front_wheel_left' type='revolute'>
+      <parent>front_side_chassis</parent>
+      <child>front_wheel_left</child>
+      <origin ="0 0 0" rpy="0 -0 0" />
+      <axis xyz="0 0 -1" rpy="0 0 0" />
+      <limit effort="10000" velocity="1000"/>
+      <dynamics damping="1.0" friction="1.0"/>
+    </joint>
+
+    <joint name='joint_front_wheel_right' type='revolute'>
+      <parent>front_side_chassis</parent>
+      <child>front_wheel_right</child>
+      <origin xyz="0 0 0" rpy="0 -0 0" />
+      <axis xyz="0 0 1" rpy="0 0 0" />
+      <limit effort="10000" velocity="1000"/>
+      <dynamics damping="1.0" friction="1.0"/>
+    </joint>
+
+    <joint name='joint_rear_wheel_left' type='revolute'>
+      <parent>front_side_chassis</parent>
+      <child>rear_wheel_left</child>
+      <origin xyz="0 0 0" rpy="0 -0 0" />
+      <axis xyz="0 0 -1" rpy="0 0 0" />
+      <limit effort="10000" velocity="1000"/>
+      <dynamics damping="1.0" friction="1.0"/>
+    </joint>
+
+    <joint name='joint_rear_wheel_right' type='revolute'>
+      <parent>front_side_chassis</parent>
+      <child>rear_wheel_right</child>
+      <origin xyz="0 0 0" rpy="0 -0 0" />
+      <axis xyz="0 0 1" rpy="0 0 0" />
+      <limit effort="10000" velocity="1000"/>
+      <dynamics damping="1.0" friction="1.0"/>
+    </joint>
+
+</robot>
